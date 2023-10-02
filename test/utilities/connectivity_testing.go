@@ -18,7 +18,7 @@ import (
 const (
 	DefaultNetworkID  = "2a79c333-0f85-4aa7-bb32-8dc76ca1fd46"
 	dummyID           = "12345"
-	defaultCniVersion = "0.2.0"
+	defaultCniVersion = "0.3.0"
 	defaultName       = "cbr0"
 )
 
