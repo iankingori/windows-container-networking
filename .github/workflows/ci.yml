@@ -68,7 +68,7 @@ jobs:
 
       - name: Test
         env:
-          ImageToUse: ${{ matrix.os == 'windows-2022' && 'mcr.microsoft.com/windows/nanoserver:ltsc2022' || ''  }}
+          ImageToUse: ${{ matrix.os == 'windows-2022' && 'mcr.microsoft.com/windows/nanoserver:ltsc2022' || matrix.os == 'windows-2025' && 'mcr.microsoft.com/windows/nanoserver:ltsc2025' || ''  }}
         run: |
           mingw32-make.exe test
         working-directory: src/github.com/Microsoft/windows-container-networking
