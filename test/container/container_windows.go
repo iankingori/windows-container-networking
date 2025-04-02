@@ -354,6 +354,12 @@ func getLayers(t *testing.T, imageName string) []string {
 		t.Fatalf("`docker` executable is required for imaged layer querying, not found in path: %s", err)
 	}
 
+	// server 2025 github images no longer cache docker images on the host
+	pullCmd := exec.Command("docker", "pull", imageName)
+	if pullErr := pullCmd.Run(); pullErr != nil {
+		t.Errorf("Failed to pull testing image %q using `docker` cli: %s", imageName, pullErr)
+	}
+
 	cmd := exec.Command("docker", "inspect", imageName, "-f", `"{{.GraphDriver.Data.dir}}"`)
 	var out bytes.Buffer
 	cmd.Stdout = &out
